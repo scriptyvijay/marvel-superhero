@@ -5,6 +5,7 @@ let favData = JSON.parse(window.localStorage.getItem("fav") || []);
 console.log(favData);
 
 window.onload = () => {
+	// add data
 	emptyData();
 };
 
