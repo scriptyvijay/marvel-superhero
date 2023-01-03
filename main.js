@@ -1,21 +1,26 @@
 let publicKey = "c4558e3e98639735a3ab3bc85dd5de2b";
 let cardDiv = document.getElementById("cards-container");
 let searchBar = document.getElementById("searchInput");
-
 let favorites = JSON.parse(localStorage.getItem("fav")) || [];
 
+// ! Onload Function for first call
 window.onload = () => {
 	emptyData();
 };
+
+// Empty data function
 
 const emptyData = async function getData() {
 	const res = await fetch("https://gateway.marvel.com:443/v1/public/characters?&ts=abcd&apikey=c4558e3e98639735a3ab3bc85dd5de2b&hash=30f530009b846bdb8bcdfc0cfebba962");
 	const resJson = await res.json();
 	const data = await resJson.data.results;
 
+	// Remove all child
 	while (cardDiv.firstChild) {
 		await cardDiv.removeChild(cardDiv.firstChild);
 	}
+
+	// Creating new child with API Data
 	data.forEach((e) => {
 		let newDiv = document.createElement("div");
 		cardDiv.appendChild(newDiv);
@@ -42,17 +47,20 @@ const emptyData = async function getData() {
 		btn.textContent = "Add to Fav ❤️";
 		btn.addEventListener("click", () => {
 			favorites.push(e);
+			// ! Pushing data to localstorage
 			window.localStorage.setItem("fav", JSON.stringify(favorites));
 		});
 	});
 };
 
+// ! Main Fetch URL Function
 async function fetchURL(value) {
 	if (value == "") {
 		dataFunc();
 		return;
 	} else {
 		try {
+			// ! Fetching Character
 			let res = await fetch(`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${value}&ts=abcd&apikey=c4558e3e98639735a3ab3bc85dd5de2b&hash=30f530009b846bdb8bcdfc0cfebba962`);
 			let data = await res.json();
 			let dataArr = await data.data.results;
@@ -63,6 +71,7 @@ async function fetchURL(value) {
 	}
 }
 
+// ! Event listener for searchbar
 searchBar.addEventListener("keyup", (ele) => {
 	if (ele.target.value === "" || ele.target.value === " ") {
 		emptyData();

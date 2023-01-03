@@ -4,14 +4,17 @@ let searchBar = document.getElementById("searchInput");
 let favData = JSON.parse(window.localStorage.getItem("fav") || []);
 console.log(favData);
 
+// !Empty data first load
 window.onload = () => {
-	// add data
 	emptyData();
 };
+
+// ! Main empty data function
 
 const emptyData = async function getData() {
 	let data = favData;
 
+	// ! Removing all Child before creating new
 	while (cardDiv.firstChild) {
 		await cardDiv.removeChild(cardDiv.firstChild);
 	}

@@ -7,9 +7,13 @@ let comics = document.getElementById("comics");
 let moreDetails = document.getElementById("more-details");
 let favData = JSON.parse(window.localStorage.getItem("search") || {});
 
+// ! Fav cards from local storage onload function
+
 window.onload = () => {
 	emptyData();
 };
+
+// ! Main emptyData function
 
 const emptyData = async function getData() {
 	heroName.textContent = favData.name;

@@ -1,5 +1,8 @@
+/* Importing for from google fonts */
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
 
+/* Body  */
 * {
 	margin: 0;
 	padding: 0;
@@ -26,6 +29,8 @@ body video {
 	object-position: 0px -150px;
 }
 
+/* Container (default for all) */
+
 .container {
 	width: max(500px, 90vw);
 	height: max(500px, 90vh);
@@ -42,6 +47,8 @@ body video {
 	border: 1px solid rgba(255, 255, 255, 0.3);
 	overflow: scroll;
 }
+
+/* Header */
 
 header nav {
 	display: flex;
@@ -113,6 +120,8 @@ header #search-bar {
 	align-items: center;
 	position: relative;
 }
+
+/* Cards Container */
 
 #cards-container {
 	display: grid;
